@@ -14,6 +14,7 @@ static void window_load(Window *window) {
 
   s_scroll_layer = scroll_layer_create(bounds);
   scroll_layer_set_click_config_onto_window(s_scroll_layer, window);
+  scroll_layer_set_shadow_hidden(s_scroll_layer, true);
   layer_add_child(window_layer, scroll_layer_get_layer(s_scroll_layer));
 
   s_content_layer = text_layer_create(GRect(0, 0, bounds.size.w, 2000));

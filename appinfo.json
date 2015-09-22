@@ -1,0 +1,18 @@
+{
+  "uuid": "80a888fc-b7b2-469e-8a30-9e2e76746bc9",
+  "shortName": "Scroll Layer Content Indicator",
+  "longName": "Scroll Layer Content Indicator",
+  "companyName": "Pebble",
+  "versionLabel": "1.0",
+  "sdkVersion": "3",
+  "targetPlatforms": ["chalk"],
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": []
+  }
+}

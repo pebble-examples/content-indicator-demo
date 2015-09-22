@@ -24,7 +24,6 @@ static void window_load(Window *window) {
 
   GSize text_size = text_layer_get_content_size(s_content_layer);
   scroll_layer_set_content_size(s_scroll_layer, text_size);
-  scroll_layer_enable_paging(s_scroll_layer, bounds.size.h / 2);
 
   // Get the ContentIndicator from the ScrollLayer
   s_indicator = scroll_layer_get_content_indicator(s_scroll_layer);
@@ -37,8 +36,7 @@ static void window_load(Window *window) {
   layer_add_child(window_layer, s_indicator_down_layer);
 
   // Configure the properties of each indicator
-  content_indicator_configure_direction(s_indicator, ContentIndicatorDirectionUp, 
-                                        (ContentIndicatorConfig) {
+  const ContentIndicatorConfig up_config = (ContentIndicatorConfig) {
     .layer = s_indicator_up_layer,
     .times_out = false,
     .alignment = GAlignCenter,
@@ -46,9 +44,11 @@ static void window_load(Window *window) {
       .foreground = GColorBlack,
       .background = GColorWhite
     }
-  });
-  content_indicator_configure_direction(s_indicator, ContentIndicatorDirectionDown, 
-                                        (ContentIndicatorConfig) {
+  };
+  content_indicator_configure_direction(s_indicator, ContentIndicatorDirectionUp, 
+                                        &up_config);
+
+  const ContentIndicatorConfig down_config = (ContentIndicatorConfig) {
     .layer = s_indicator_down_layer,
     .times_out = false,
     .alignment = GAlignCenter,
@@ -56,7 +56,9 @@ static void window_load(Window *window) {
       .foreground = GColorBlack,
       .background = GColorWhite
     }
-  });
+  };
+  content_indicator_configure_direction(s_indicator, ContentIndicatorDirectionDown, 
+                                        &down_config);
 }
 
 static void window_unload(Window *window) {

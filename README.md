@@ -1,2 +1,5 @@
-# content-indicator-demo-dev
-Private dev repo for ContentIndicator example project
+# content-indicator-demo
+
+![screenshot](screenshot.png)
+
+Example watchapp showing use of the ContentIndicator UI component.

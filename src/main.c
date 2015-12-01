@@ -17,17 +17,6 @@ static void window_load(Window *window) {
   scroll_layer_set_shadow_hidden(s_scroll_layer, true);
   layer_add_child(window_layer, scroll_layer_get_layer(s_scroll_layer));
 
-  s_content_layer = text_layer_create(GRect(bounds.origin.x, bounds.origin.y, bounds.size.w, 2000));
-  text_layer_set_text(s_content_layer, s_content);
-  text_layer_set_text_alignment(s_content_layer, GTextAlignmentCenter);
-  text_layer_set_font(s_content_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
-  scroll_layer_add_child(s_scroll_layer, text_layer_get_layer(s_content_layer));
-
-  GSize text_size = text_layer_get_content_size(s_content_layer);
-  layer_set_frame(text_layer_get_layer(s_content_layer), 
-                  GRect(bounds.origin.x, bounds.origin.y, bounds.size.w, text_size.h));
-  scroll_layer_set_content_size(s_scroll_layer, text_size);
-
   // Get the ContentIndicator from the ScrollLayer
   s_indicator = scroll_layer_get_content_indicator(s_scroll_layer);
   
@@ -63,6 +52,17 @@ static void window_load(Window *window) {
   };
   content_indicator_configure_direction(s_indicator, ContentIndicatorDirectionDown, 
                                         &down_config);
+
+  s_content_layer = text_layer_create(GRect(bounds.origin.x, bounds.origin.y, bounds.size.w, 2000));
+  text_layer_set_text(s_content_layer, s_content);
+  text_layer_set_text_alignment(s_content_layer, GTextAlignmentCenter);
+  text_layer_set_font(s_content_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
+  scroll_layer_add_child(s_scroll_layer, text_layer_get_layer(s_content_layer));
+
+  GSize text_size = text_layer_get_content_size(s_content_layer);
+  layer_set_frame(text_layer_get_layer(s_content_layer), 
+                  GRect(bounds.origin.x, bounds.origin.y, bounds.size.w, text_size.h));
+  scroll_layer_set_content_size(s_scroll_layer, text_size);
 }
 
 static void window_unload(Window *window) {
